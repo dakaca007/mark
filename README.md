@@ -361,7 +361,53 @@ https://www.bilibili.com/video/BV1G44y1Q7MV
 
 2）通过宝塔面板安装教程
 
-即将更新
+https://www.bilibili.com/video/BV1xA411z7QA
+
+
+
+## 自动化部署教程
+
+> Bilibili同步更新视频教程
+
+（1）构建完成执行的shell脚本
+
+```shell
+# 删除文件
+if [ ! -d "/huasen-compose/huasen-log" ];then echo "文件不存在"; else rm -rf /huasen-compose/huasen-log; fi
+if [ ! -d "/huasen-compose/huasen-nginx" ];then echo "文件不存在"; else rm -rf /huasen-compose/huasen-nginx; fi
+if [ ! -d "/huasen-compose/huasen-server" ];then echo "文件不存在"; else rm -rf /huasen-compose/huasen-server; fi
+
+# 移动文件
+mv -f ./huasen-nginx /huasen-compose/huasen-nginx
+mv -f ./huasen-server /huasen-compose/huasen-server
+# 合并资源目录
+cp -frap ./huasen-store/* /huasen-compose/huasen-store/
+```
+
+（2）远程执行的shell脚本
+
+```shell
+# 采用宿主机进程
+# source /etc/profile
+# 防止此进程在执行宿主机脚本之前被杀死
+# BUILD_ID=dontKillMe
+# 进到部署目录
+
+cd /huasenjio-compose
+# 输出执行目录
+pwd
+# 停止服务
+docker-compose stop nginx server
+# 移除已停止的容器
+docker-compose rm -f nginx server
+# 更新后端服务镜像
+docker-compose build server
+# 重新更新部署容器
+docker-compose up -d --no-recreate --remove-orphans
+# 移除无用的镜像
+docker image prune -f
+docker volume prune -f
+```
 
 
 
