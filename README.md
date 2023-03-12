@@ -1,6 +1,6 @@
 # 花森门户
 
-> 在线预览地址：http://n.huasen.cc/（如首次访问 请耐心等待）
+> 在线预览地址（首次访问请耐心等待）：http://n.huasen.cc/
 >
 > 码云仓库地址：https://gitee.com/HuaSenJioJio/huasenjio-compose
 >
