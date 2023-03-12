@@ -1,10 +1,14 @@
 # 花森门户
 
-> 在线地址（首次加载请耐心等待）：http://n.huasen.cc/
+> 在线预览地址：http://n.huasen.cc/（如首次访问 请耐心等待）
 >
 > 码云仓库地址：https://gitee.com/HuaSenJioJio/huasenjio-compose
 >
 > Github仓库地址：https://github.com/huasenjio/huasenjio-compose
+>
+> 温馨小提示：文章底部有视频安装教程
+
+
 
 huasenjio 系列网站增添新作品，（huasenjio-compose）[官方仓库](https://github.com/huasenjio/huasenjio-compose)，基于 vue.js（2.6.11）、node.js、docker-compose、redis、mongodb、jenkins 组合构建的容器应用，原创正式开源！🎉🎉🎉
 
@@ -105,15 +109,21 @@ huasenjio 系列网站增添新作品，（huasenjio-compose）[官方仓库](ht
 
 1）安装 wandisco 仓库包
 
-`yum install http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-2.noarch.rpm`
+```
+yum install http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-2.noarch.rpm
+```
 
 2）安装 git 安装包
 
-`yum -y install git`
+```
+yum -y install git
+```
 
 3）验证版本
 
-`git version`
+```
+git version
+```
 
 #### docker
 
@@ -363,20 +373,17 @@ https://www.bilibili.com/video/BV1G44y1Q7MV
 
 https://www.bilibili.com/video/BV1xA411z7QA
 
+3）自动化部署教程
 
+https://www.bilibili.com/video/BV1vg4y1E7xy
 
-## 自动化部署教程
-
-> Bilibili同步更新视频教程
-
-（1）构建完成执行的shell脚本
+3-1）构建完成执行的shell脚本：
 
 ```shell
 # 删除文件
 if [ ! -d "/huasen-compose/huasen-log" ];then echo "文件不存在"; else rm -rf /huasen-compose/huasen-log; fi
 if [ ! -d "/huasen-compose/huasen-nginx" ];then echo "文件不存在"; else rm -rf /huasen-compose/huasen-nginx; fi
 if [ ! -d "/huasen-compose/huasen-server" ];then echo "文件不存在"; else rm -rf /huasen-compose/huasen-server; fi
-
 # 移动文件
 mv -f ./huasen-nginx /huasen-compose/huasen-nginx
 mv -f ./huasen-server /huasen-compose/huasen-server
@@ -384,7 +391,7 @@ mv -f ./huasen-server /huasen-compose/huasen-server
 cp -frap ./huasen-store/* /huasen-compose/huasen-store/
 ```
 
-（2）远程执行的shell脚本
+3-2）远程执行的shell脚本：
 
 ```shell
 # 采用宿主机进程
@@ -392,7 +399,6 @@ cp -frap ./huasen-store/* /huasen-compose/huasen-store/
 # 防止此进程在执行宿主机脚本之前被杀死
 # BUILD_ID=dontKillMe
 # 进到部署目录
-
 cd /huasenjio-compose
 # 输出执行目录
 pwd
@@ -412,6 +418,8 @@ docker volume prune -f
 
 
 ## 开发者指南
+
+适合有编程基础的小伙伴阅读
 
 ### 目录结构
 
@@ -441,15 +449,21 @@ docker volume prune -f
 
 1）安装依赖
 
-`npm install`
+```
+npm install
+```
 
 2）运行程序
 
-`npm run server`
+```
+npm run server
+```
 
 3）打包构建
 
-`npm run build`
+```
+npm run build
+```
 
 #### 后台管理
 
@@ -457,15 +471,21 @@ docker volume prune -f
 
 1）安装依赖
 
-`npm install`
+```
+npm install
+```
 
 2）运行程序
 
-`npm run server`
+```
+npm run server
+```
 
 3）打包构建
 
-`npm run build`
+```
+npm run build
+```
 
 #### 容器启动
 
@@ -473,7 +493,9 @@ docker volume prune -f
 
 1）构建容器
 
-`docker-compose up -d`
+```
+docker-compose up -d
+```
 
 #### 后台服务
 
@@ -481,11 +503,15 @@ docker volume prune -f
 
 1）安装依赖
 
-`npm install`
+```
+npm install
+```
 
 2）运行程序
 
-`npm run dev`
+```
+npm run dev
+```
 
 
 
@@ -493,10 +519,10 @@ docker volume prune -f
 
 由于涉及知识面较广，文字讲解篇幅过大，可以关注我的 Bilibili 账号，后续更新视频教程，感兴趣的小伙伴可以添加站长微信 ，进入前端技术交流群！
 
-企鹅 🐧：184820911
+🐧企鹅：184820911
 
-微信 😸：huasencc（站长邀请进入前端交流群）
+😸微信 ：huasencc（站长邀请进入前端交流群）
 
-邮箱 📮：[184820911@qq.com](184820911@qq.com)
+📮邮箱 ：[184820911@qq.com](184820911@qq.com)
 
-哔哩哔哩：[花森酱 JioJio](https://space.bilibili.com/241546158)
+📺哔哩哔哩：[花森酱 JioJio](https://space.bilibili.com/241546158)
