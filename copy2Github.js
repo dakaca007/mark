@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2023-04-15 02:12:10
  * @LastEditors: huasenjio
- * @LastEditTime: 2023-04-15 16:41:33
+ * @LastEditTime: 2023-04-15 15:55:52
  * @Description: 拷贝项目文件到Github开源仓库
  */
 const { copyFiles } = require("./copyProject.js");
