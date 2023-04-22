@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2022-09-03 13:59:36
  * @LastEditors: huasenjio
- * @LastEditTime: 2022-09-30 00:26:19
+ * @LastEditTime: 2023-04-22 18:31:37
  * @Description: 移动端设备，通过缩放可视窗口，实现完美展现
  */
 
@@ -10,15 +10,18 @@ import { debounce } from 'lodash';
 import CONSTENT from '@/constant/index.js';
 
 // 不缩放开关
-let noScale = undefined;
+let noScale = false;
 
 // resize事件回调
 let scaleDocument = debounce(e => {
   let viewport = document.getElementById('viewport');
+  // 计算缩放比例
   let scale = document.body.clientWidth / CONSTENT.appMinWidth;
-  if (scale == 1 || noScale) {
+  if (scale === 1) {
+    // 若比例等于1，就不再缩放，否则屏幕由于缩放，一直抖动
     noScale = true;
-    return;
+  } else if (noScale) {
+    // 无需缩放
   } else if (scale < 1) {
     // 缩放
     viewport.content = `width=device-width,initial-scale=${scale}`;

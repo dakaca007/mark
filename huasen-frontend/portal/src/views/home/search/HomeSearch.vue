@@ -13,7 +13,7 @@
       </div>
       <!-- 搜索输入框 -->
       <div class="center">
-        <el-input ref="searchInput" v-model="searchText" @keyup.native="handleIdea" @keydown.tab.native.prevent="handleTab" :autofocus="true" placeholder="搜索一下..." clearable> </el-input>
+        <el-input ref="searchInput" v-model="searchText" @input="handleIdea" @keydown.tab.native.prevent="handleTab" :autofocus="true" placeholder="搜索一下..." clearable> </el-input>
       </div>
       <div class="right">
         <i class="iconfont icon-md-search" @click="doSearch"></i>
@@ -111,6 +111,8 @@ export default {
     },
     // 获取关键词高亮的文字
     getHighlightText(text, target) {
+      // text值可能undefined || null，所以异常处理
+      text = typeof text !== 'string' ? '' : text;
       let reg = new RegExp(target, 'i');
       let hText = text.replace(reg, match => {
         return `<span class="idea-highlight"">${match}</span>`;
