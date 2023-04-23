@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2022-10-10 00:36:28
  * @LastEditors: huasenjio
- * @LastEditTime: 2023-03-13 22:09:45
+ * @LastEditTime: 2023-04-23 22:43:50
  * @Description: 站点表控制器
  */
 
@@ -50,6 +50,26 @@ function add(req, res, next) {
   );
 }
 
+function addMany(req, res, next) {
+  let { sites } = req.huasenParams;
+  if (!Array.isArray(sites)) {
+    global.huasen.responseData(res, {}, 'ERROR', '参数异常', false);
+  } else {
+    req.epWorking(
+      [
+        {
+          schemaName: 'Site',
+          methodName: 'insertMany',
+          payloads: [sites],
+        },
+      ],
+      result => {
+        global.huasen.responseData(res, result, 'SUCCESS', '添加站点成功', false);
+      },
+    );
+  }
+}
+
 function remove(req, res, next) {
   let { _id } = req.huasenParams;
   req.epWorking(
@@ -68,6 +88,26 @@ function remove(req, res, next) {
       global.huasen.responseData(res, result, 'SUCCESS', '删除站点成功', false);
     },
   );
+}
+
+function removeMany(req, res, next) {
+  let { _ids } = req.huasenParams;
+  if (!Array.isArray(_ids)) {
+    global.huasen.responseData(res, {}, 'ERROR', '参数异常', false);
+  } else {
+    req.epWorking(
+      [
+        {
+          schemaName: 'Site',
+          methodName: 'deleteMany',
+          payloads: [{ _id: { $in: _ids } }],
+        },
+      ],
+      result => {
+        global.huasen.responseData(res, result, 'SUCCESS', '删除站点成功', false);
+      },
+    );
+  }
 }
 
 function update(req, res, next) {
@@ -135,4 +175,6 @@ module.exports = {
   remove,
   findByCode,
   findByList,
+  removeMany,
+  addMany,
 };
