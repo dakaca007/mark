@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2022-01-19 00:38:51
  * @LastEditors: huasenjio
- * @LastEditTime: 2023-04-13 00:16:42
+ * @LastEditTime: 2023-04-25 00:50:01
  * @Description: 
 -->
 <template>
@@ -14,9 +14,13 @@
       :formMap="searchFormMap"
       :total="total"
       :showAdd="true"
+      :showAddMany="true"
+      :showSelection="true"
       @edit="handleEdit"
       @add="handleAdd"
+      @addMany="handleAddMany"
       @remove="handleRemove"
+      @removeMany="handleRemoveMany"
       @search="queryData"
       @paginationChange="paginationChange"
       @updatePagination="updatePagination"
@@ -202,9 +206,39 @@ export default {
       });
     },
 
+    handleRemoveMany(list) {
+      let _ids = list.map(item => item._id);
+      this.API.removeManySite({ _ids }).then(res => {
+        this.queryData();
+      });
+    },
+
     handleAdd() {
       this.show = true;
       this.mode = 'add';
+    },
+
+    handleAddMany() {
+      this.$prompt('网链文本数据', '导入数据', {
+        confirmButtonText: '导入',
+        cancelButtonText: '取消',
+        inputValidator: val => {
+          try {
+            let temp = JSON.parse(val);
+            return !!Array.isArray(temp);
+          } catch (err) {
+            return false;
+          }
+        },
+        inputErrorMessage: '正确数据格式：[{"name":"名称","url":"huasen.cc","description":"描述"}]',
+      })
+        .then(({ value }) => {
+          let sites = JSON.parse(value);
+          this.API.addManySite({ sites }).then(res => {
+            this.queryData();
+          });
+        })
+        .catch(err => {});
     },
 
     handleEdit(index, row) {

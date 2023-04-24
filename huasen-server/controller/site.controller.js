@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2022-10-10 00:36:28
  * @LastEditors: huasenjio
- * @LastEditTime: 2023-04-23 22:43:50
+ * @LastEditTime: 2023-04-25 00:21:58
  * @Description: 站点表控制器
  */
 
@@ -53,7 +53,7 @@ function add(req, res, next) {
 function addMany(req, res, next) {
   let { sites } = req.huasenParams;
   if (!Array.isArray(sites)) {
-    global.huasen.responseData(res, {}, 'ERROR', '参数异常', false);
+    global.huasen.responseData(res, {}, 'ERROR', '导入数据异常', false);
   } else {
     req.epWorking(
       [

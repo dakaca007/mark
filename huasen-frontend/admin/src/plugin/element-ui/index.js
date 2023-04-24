@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2021-10-30 14:15:08
  * @LastEditors: huasenjio
- * @LastEditTime: 2023-03-26 11:58:20
+ * @LastEditTime: 2023-04-25 00:38:21
  * @Description: 优化引入Element
  */
 
@@ -92,6 +92,7 @@ Vue.prototype.$loading = Loading.service;
 Vue.prototype.$notify = Notification;
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm;
+Vue.prototype.$prompt = MessageBox.prompt;
 
 Vue.prototype.$startLoading = function(text) {
   HLoadingCount++;

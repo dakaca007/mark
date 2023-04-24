@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2022-10-06 10:19:56
  * @LastEditors: huasenjio
- * @LastEditTime: 2023-03-31 00:13:10
+ * @LastEditTime: 2023-04-25 00:05:53
  * @Description: 表格数据展示组件
 -->
 <template>
@@ -22,10 +22,12 @@
               </el-select>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :span="8">
             <el-form-item>
-              <el-button type="primary" @click="search">查 询</el-button>
-              <el-button v-if="showAdd" type="success" @click="add">添 加</el-button>
+              <el-button size="small" type="primary" @click="search">查询</el-button>
+              <el-button size="small" v-if="showAdd" type="success" @click="add">添加</el-button>
+              <el-button size="small" v-if="showAddMany" type="info" @click="addMany">上传</el-button>
+              <el-button size="small" v-if="showRemoveMany" type="danger" @click="removeMany">批量删除</el-button>
             </el-form-item>
           </el-col>
         </el-row>
@@ -33,7 +35,9 @@
     </header>
     <!-- 中间表格 -->
     <main v-if="showContent">
-      <el-table :data="tableData" :stripe="true" :border="true" highlight-current-row height="100%">
+      <el-table ref="table" :data="tableData" :stripe="true" :border="true" highlight-current-row @selection-change="handleSelectionChange" height="100%">
+        <!-- 多选 -->
+        <el-table-column v-if="showSelection" type="selection" width="48"> </el-table-column>
         <!-- 序号 -->
         <el-table-column type="index" width="50" label="序号"> </el-table-column>
         <!-- 数据列 -->
@@ -128,6 +132,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    showAddMany: {
+      type: Boolean,
+      default: false,
+    },
     showRemove: {
       type: Boolean,
       default: true,
@@ -141,6 +149,10 @@ export default {
       default: false,
     },
     showCopy: {
+      type: Boolean,
+      default: false,
+    },
+    showSelection: {
       type: Boolean,
       default: false,
     },
@@ -161,6 +173,8 @@ export default {
         pageNo: 1,
         pageSize: 10,
       },
+      // 是否显示多选按钮
+      showRemoveMany: false,
     };
   },
 
@@ -175,6 +189,10 @@ export default {
   },
 
   methods: {
+    handleSelectionChange() {
+      this.showRemoveMany = this.$refs.table.selection.length === 0 ? false : true;
+    },
+
     handlePlaceHolder(formItem) {
       return `请输入${formItem.label}`;
     },
@@ -193,8 +211,17 @@ export default {
       this.$emit('add');
     },
 
+    addMany() {
+      this.$emit('addMany');
+    },
+
     remove(index, row) {
       this.handleEmit('remove', index, row, this.pagination.pageNo, this.pagination.pageSize);
+    },
+
+    removeMany() {
+      let select = this.$refs.table.selection || [];
+      this.handleEmit('removeMany', select);
     },
 
     edit(index, row) {
