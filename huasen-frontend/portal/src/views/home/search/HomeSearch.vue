@@ -13,7 +13,19 @@
       </div>
       <!-- 搜索输入框 -->
       <div class="center">
-        <el-input ref="searchInput" v-model="searchText" @input="handleIdea" @keydown.tab.native.prevent="handleTab" :autofocus="true" placeholder="搜索一下..." clearable> </el-input>
+        <el-input
+          ref="searchInput"
+          v-model="searchText"
+          @input="handleIdea"
+          @keyup.up.native.prevent="handleUp"
+          @keyup.down.native.prevent="handleDown"
+          @keydown.tab.shift.native.prevent.exact="handlePrevTab"
+          @keydown.tab.native.prevent.exact="handleNextTab"
+          :autofocus="true"
+          placeholder="搜索一下..."
+          clearable
+        >
+        </el-input>
       </div>
       <div class="right">
         <i class="iconfont icon-md-search" @click="doSearch"></i>
@@ -105,9 +117,15 @@ export default {
     this.$store.dispatch('initLocalStyleInfo');
   },
   methods: {
-    handleTab(event) {
+    handleNextTab(event) {
       let index = this.activeSearchIndex < this.searchs.length - 1 ? this.activeSearchIndex + 1 : 0;
       this.selectEngine(index);
+      this.handleIdea();
+    },
+    handlePrevTab(event) {
+      let index = this.activeSearchIndex > 0 ? this.activeSearchIndex - 1 : this.searchs.length - 1;
+      this.selectEngine(index);
+      this.handleIdea();
     },
     // 获取关键词高亮的文字
     getHighlightText(text, target) {
@@ -119,22 +137,23 @@ export default {
       });
       return hText;
     },
-    // 处理键盘按下事件
-    handleIdea(event) {
-      if (this.searchText !== undefined && this.searchText !== null && event.keyCode !== 40 && event.keyCode !== 38) {
-        this.af.run(this.getIdea);
-      }
-      // 按下上下键
-      if (event.keyCode == 40 && this.ideas.length !== 0) {
+    handleDown() {
+      if (this.ideas.length !== 0) {
         this.activeIdeaIndex = this.activeIdeaIndex == this.ideas.length - 1 ? 0 : this.activeIdeaIndex + 1;
         // 判断是否是站内搜索
         this.searchText = this.instationEngine ? this.ideas[this.activeIdeaIndex].name : this.ideas[this.activeIdeaIndex];
       }
-      if (event.keyCode == 38 && this.ideas.length !== 0) {
+    },
+    handleUp() {
+      if (this.ideas.length !== 0) {
         this.activeIdeaIndex = this.activeIdeaIndex > 0 ? this.activeIdeaIndex - 1 : this.ideas.length - 1;
         // 判断是否是站内搜索
         this.searchText = this.instationEngine ? this.ideas[this.activeIdeaIndex].name : this.ideas[this.activeIdeaIndex];
       }
+    },
+    // 处理键盘按下事件
+    handleIdea(event) {
+      this.af.run(this.getIdea);
     },
     // 进行搜索
     doSearch() {
@@ -164,7 +183,9 @@ export default {
     },
     // 获取热词
     getIdea() {
+      // 排除搜索词为空的情况
       if (this.searchText == '') return;
+      // 区分站内搜索和外网搜索
       if (this.instationEngine) {
         // 站内搜索，所以不请求接口，直接检索收录的网站
         let ideas = [];
