@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2021-12-05 16:10:46
  * @LastEditors: huasenjio
- * @LastEditTime: 2023-03-20 21:07:27
+ * @LastEditTime: 2023-04-26 00:04:24
  * @Description: 
 -->
 <template>
@@ -12,7 +12,10 @@
         <div class="head">
           <img v-lazy="{ unload: require('@/assets/img/error/slogan.png') }" class="w-full h-full" :src="this.user.headImg" />
         </div>
-        <div class="name text">{{ user.name || '花酱大人' }}</div>
+        <div class="name text">
+          <div>{{ user.name || '花酱大人' }}</div>
+          <div class="text text-sm text-gray-400">{{ user.id || 'localspace@qq.com' }}</div>
+        </div>
         <i class="iconfont icon-tuichu" @click="exit"></i>
       </header>
       <main>
@@ -38,7 +41,7 @@
           <li>
             <div class="left">
               <div class="title">同步收录网站</div>
-              <div class="detail">拉取已收录的网站信息</div>
+              <div class="detail">拉取已收录的自定义网站数据</div>
             </div>
             <div class="right">
               <i class="iconfont icon-md-sync" @click="consistentFromCloud('record')"></i>
