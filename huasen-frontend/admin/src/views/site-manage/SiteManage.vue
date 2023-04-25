@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2022-01-19 00:38:51
  * @LastEditors: huasenjio
- * @LastEditTime: 2023-04-25 00:50:01
+ * @LastEditTime: 2023-04-26 00:14:29
  * @Description: 
 -->
 <template>
@@ -219,7 +219,7 @@ export default {
     },
 
     handleAddMany() {
-      this.$prompt('网链文本数据', '导入数据', {
+      this.$prompt('网链', '导入文本数据', {
         confirmButtonText: '导入',
         cancelButtonText: '取消',
         inputValidator: val => {
@@ -230,7 +230,7 @@ export default {
             return false;
           }
         },
-        inputErrorMessage: '正确数据格式：[{"name":"名称","url":"huasen.cc","description":"描述"}]',
+        inputErrorMessage: '数据格式：[{"name":"名称","url":"huasen.cc","description":"描述"}]',
       })
         .then(({ value }) => {
           let sites = JSON.parse(value);
