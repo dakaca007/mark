@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2022-10-06 10:19:56
  * @LastEditors: huasenjio
- * @LastEditTime: 2023-04-25 00:05:53
+ * @LastEditTime: 2023-04-25 23:27:22
  * @Description: 表格数据展示组件
 -->
 <template>
@@ -11,7 +11,7 @@
     <header v-if="showHeader">
       <el-form ref="searchForm" :inline="true" :model="formData">
         <el-row :gutter="10">
-          <el-col v-for="(formItem, index) in formMap" :key="index" :span="formItem.span || 6">
+          <el-col v-for="(formItem, index) in formMap" :key="index" :span="formItem.span || 5">
             <el-form-item>
               <!-- input -->
               <el-input v-if="formItem.type == 'input'" v-model="formData[formItem.key]" :placeholder="handlePlaceHolder(formItem)" clearable></el-input>
@@ -26,8 +26,10 @@
             <el-form-item>
               <el-button size="small" type="primary" @click="search">查询</el-button>
               <el-button size="small" v-if="showAdd" type="success" @click="add">添加</el-button>
-              <el-button size="small" v-if="showAddMany" type="info" @click="addMany">上传</el-button>
-              <el-button size="small" v-if="showRemoveMany" type="danger" @click="removeMany">批量删除</el-button>
+              <el-button size="small" v-if="showAddMany" type="info" @click="addMany">导入</el-button>
+              <el-popconfirm v-if="showRemoveMany" @confirm="removeMany" class="ml-px-10" popper-class="delete-popcomfirm" title="确定删除吗？">
+                <el-button slot="reference" size="small" type="danger">批量删除</el-button>
+              </el-popconfirm>
             </el-form-item>
           </el-col>
         </el-row>
