@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2940247 */
-  src: url('iconfont.woff2?t=1665670996832') format('woff2'),
-       url('iconfont.woff?t=1665670996832') format('woff'),
-       url('iconfont.ttf?t=1665670996832') format('truetype');
+  src: url('iconfont.woff2?t=1682699956844') format('woff2'),
+       url('iconfont.woff?t=1682699956844') format('woff'),
+       url('iconfont.ttf?t=1682699956844') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,46 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-github:before {
+  content: "\e66f";
+}
+
+.icon-rcd-image-error-f:before {
+  content: "\e618";
+}
+
+.icon-xitongpeizhi:before {
+  content: "\e686";
+}
+
+.icon-chengxvpeizhi:before {
+  content: "\e619";
+}
+
+.icon-json:before {
+  content: "\e7bd";
+}
+
+.icon-daima:before {
+  content: "\e66a";
+}
+
+.icon-fenlei:before {
+  content: "\e643";
+}
+
+.icon-chubufenlei:before {
+  content: "\e663";
+}
+
+.icon-rizhifuwu:before {
+  content: "\e669";
+}
+
+.icon-wenzi:before {
+  content: "\e883";
 }
 
 .icon-bianji:before {

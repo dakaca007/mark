@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2022-08-28 23:45:07
  * @LastEditors: huasenjio
- * @LastEditTime: 2023-03-24 22:28:05
+ * @LastEditTime: 2023-04-29 00:43:49
  * @Description: 
 -->
 <template>
@@ -10,6 +10,9 @@
     <ul>
       <li v-if="showWrapSidebarSocket" class="animate__animated animate__fadeIn shadow">
         <i class="iconfont icon-md-rocket" @click="goTop"></i>
+      </li>
+      <li class="shadow">
+        <i class="iconfont icon-github" @click="goStorage"> </i>
       </li>
       <li class="shadow">
         <i class="iconfont icon-weixin" @mouseenter="showConnectPannel" @mouseleave="closeConnectPannel"> </i>
@@ -49,6 +52,11 @@ export default {
     readHelp() {
       let help = this.appConfig.article.help;
       this.TOOL.jumpToRead(this, help);
+    },
+
+    // 调整仓库
+    goStorage() {
+      window.open('https://github.com/huasenjio/huasenjio-compose', '_blank');
     },
 
     showConnectPannel() {

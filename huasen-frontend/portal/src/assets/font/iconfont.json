@@ -6,6 +6,76 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "14401714",
+      "name": "github",
+      "font_class": "github",
+      "unicode": "e66f",
+      "unicode_decimal": 58991
+    },
+    {
+      "icon_id": "29923457",
+      "name": "rcd-image-error-f",
+      "font_class": "rcd-image-error-f",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "29522715",
+      "name": "24A配置",
+      "font_class": "xitongpeizhi",
+      "unicode": "e686",
+      "unicode_decimal": 59014
+    },
+    {
+      "icon_id": "17523086",
+      "name": "配置-系统配置",
+      "font_class": "chengxvpeizhi",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "1444787",
+      "name": "json",
+      "font_class": "json",
+      "unicode": "e7bd",
+      "unicode_decimal": 59325
+    },
+    {
+      "icon_id": "9454023",
+      "name": "代码",
+      "font_class": "daima",
+      "unicode": "e66a",
+      "unicode_decimal": 58986
+    },
+    {
+      "icon_id": "6102957",
+      "name": "分类",
+      "font_class": "fenlei",
+      "unicode": "e643",
+      "unicode_decimal": 58947
+    },
+    {
+      "icon_id": "11799091",
+      "name": "初步分类",
+      "font_class": "chubufenlei",
+      "unicode": "e663",
+      "unicode_decimal": 58979
+    },
+    {
+      "icon_id": "21053617",
+      "name": "日志服务",
+      "font_class": "rizhifuwu",
+      "unicode": "e669",
+      "unicode_decimal": 58985
+    },
+    {
+      "icon_id": "9626955",
+      "name": "文字",
+      "font_class": "wenzi",
+      "unicode": "e883",
+      "unicode_decimal": 59523
+    },
+    {
       "icon_id": "1304874",
       "name": "编辑",
       "font_class": "bianji",
