@@ -2,11 +2,11 @@
  * @Autor: huasenjio
  * @Date: 2022-09-05 00:22:50
  * @LastEditors: huasenjio
- * @LastEditTime: 2023-03-29 23:22:59
+ * @LastEditTime: 2023-05-06 23:02:04
  * @Description: 二次封装el-dialog
 -->
 <template>
-  <el-dialog ref="hsDialog" v-bind="$attrs" v-on="$listeners" :width="dialogWidth" :style="dialogStyle" @scroll.capture.native="handleScroll">
+  <el-dialog ref="hsDialog" :class="{ 'shadow-dialog': showShadow }" v-bind="$attrs" v-on="$listeners" :width="dialogWidth" :style="dialogStyle" @scroll.capture.native="handleScroll">
     <!-- 默认插槽 -->
     <slot></slot>
     <!-- 底部插槽 -->
@@ -56,13 +56,16 @@ export default {
     fullscreen() {
       return this.$attrs.fullscreen;
     },
-    // 弹窗大小
-    dialogWidth() {
-      return this.TOOL.handleSize(this.width);
-    },
     // 是否显示按钮
     showFooter() {
       return Object.keys(this.buttons).length === 0 ? false : true;
+    },
+    showShadow() {
+      return this.$attrs.title;
+    },
+    // 弹窗大小
+    dialogWidth() {
+      return this.TOOL.handleSize(this.width);
     },
     // 全屏状态下，设置最小宽度
     dialogStyle() {
@@ -103,21 +106,27 @@ export default {
 <style lang="scss" scoped>
 ::v-deep .el-dialog {
   min-width: var(--dialogMinWidth) !important;
-
   .el-dialog__header {
-    border-bottom: 1px solid var(--gray-100);
-    box-shadow: 0 5px 6px -5px var(--gray-200);
   }
-
   .el-dialog__body {
     height: var(--dialogBodyHeight) !important;
     max-height: var(--dialogBodyMaxHeight) !important;
     overflow-x: hidden;
     overflow-y: auto;
   }
-
   .el-dialog__footer {
     padding: 10px 20px;
+  }
+}
+</style>
+
+<style lang="scss">
+.shadow-dialog {
+  .el-dialog__header {
+    border-bottom: 1px solid var(--gray-100);
+    box-shadow: 0 5px 6px -5px var(--gray-200);
+  }
+  .el-dialog__footer {
     border-top: 1px solid var(--gray-100);
     box-shadow: 0px -5px 6px -5px var(--gray-200);
   }

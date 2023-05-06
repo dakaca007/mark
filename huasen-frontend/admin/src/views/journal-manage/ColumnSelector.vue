@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2022-09-12 10:40:59
  * @LastEditors: huasenjio
- * @LastEditTime: 2023-03-19 23:24:51
+ * @LastEditTime: 2023-05-06 23:08:29
  * @Description: 网站选择器
 -->
 <template>
@@ -74,7 +74,7 @@ export default {
 
   computed: {
     displayColumns() {
-      return this.columns.filter(item => item.name.includes(this.searchText));
+      return this.columns.filter(item => item.name.toUpperCase().includes(this.searchText.toUpperCase()));
     },
   },
 

@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2022-09-12 10:40:59
  * @LastEditors: huasenjio
- * @LastEditTime: 2023-03-28 00:23:35
+ * @LastEditTime: 2023-05-06 23:07:07
  * @Description: 网站选择器
 -->
 
@@ -78,7 +78,7 @@ export default {
 
   computed: {
     displaySites() {
-      return this.sites.filter(item => item.name.includes(this.searchText));
+      return this.sites.filter(item => item.name.toUpperCase().includes(this.searchText.toUpperCase()));
     },
   },
 
