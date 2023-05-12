@@ -18,7 +18,6 @@ services:
     volumes:
       # /data/db数据目录挂载到宿主机
       - ./huasen-mongo/volume:/data/db
-        -chomd=777
       # init-mongo.js文件会在mongodb容器初始化完成之后执行，给数据库创建默认的角色
       - ./huasen-mongo/init-mongo-open.js:/docker-entrypoint-initdb.d/mongo-init.js
     command: mongod --bind_ip 0.0.0.0
