@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2021-12-05 20:23:00
  * @LastEditors: huasenjio
- * @LastEditTime: 2023-05-06 23:14:31
+ * @LastEditTime: 2023-05-14 11:41:34
  * @Description: 
 -->
 <template>
@@ -103,6 +103,7 @@ export default {
           key: 'remark',
           label: '备注',
           type: 'textarea',
+          minRows: 4,
         },
       ],
       formRule: {
