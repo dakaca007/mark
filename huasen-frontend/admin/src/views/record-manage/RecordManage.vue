@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2022-10-07 10:21:54
  * @LastEditors: huasenjio
- * @LastEditTime: 2023-03-29 22:57:00
+ * @LastEditTime: 2023-05-14 12:13:59
  * @Description: 管理员账号管理
 -->
 
@@ -16,8 +16,10 @@
       :showAdd="false"
       :showEdit="false"
       :showCopy="true"
+      :showSelection="true"
       :total="total"
       @remove="removeRecord"
+      @removeMany="handleRemoveMany"
       @search="queryRecord"
       @paginationChange="paginationChange"
       @updatePagination="updatePagination"
@@ -101,6 +103,13 @@ export default {
 
     removeRecord(index, row, pageNo, pageSize) {
       this.API.removeRecord({ _id: row._id }).then(res => {
+        this.queryRecord();
+      });
+    },
+
+    handleRemoveMany(list) {
+      let _ids = list.map(item => item._id);
+      this.API.removeManyRecord({ _ids }).then(res => {
         this.queryRecord();
       });
     },
